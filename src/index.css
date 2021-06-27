@@ -67,6 +67,15 @@
   border-radius: 8px;
   cursor: pointer;
 }
+.blog-details button{
+  background-color: #f1356d;
+  color: rgb(254, 255, 255);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
 /* create new blog form */
 .create {
   max-width: 400px;
@@ -84,7 +93,7 @@
 }
 .create input, .create select {
   width: 600px;
-  min-height:2cm;
+  min-height:1.5cm;
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
