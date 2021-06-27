@@ -8,8 +8,11 @@ const useFetch = (apiurl) => {
     // const apiurl = ' http://localhost:8000/blogs';
 
     useEffect(() =>{
+      
+      const abortCont = new AbortController();
+
         setTimeout(() =>{
-          fetch(apiurl)
+          fetch(apiurl,{signal:abortCont.signal})
           .then(res => {
             if(!res.ok){
                 throw Error('Could not fetch the data for the resource');
@@ -21,12 +24,17 @@ const useFetch = (apiurl) => {
               setIsPending(false);
               setError(null);
           }).catch(err => {
-            setError(err.message);
-            setIsPending(false);
+            if(err.name === 'AbortError'){
+              console.log('fetch abort')
+            }else{
+              setIsPending(false);
+              setError(err.message);
+            }
           })
-        },500); 
+        },300); 
+        return () => abortCont.abort();
         },[apiurl]);
-        
+      
     return {data,isPending,error}
 }
  
